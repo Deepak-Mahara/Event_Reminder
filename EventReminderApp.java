@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import javax.swing.JButton;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -33,6 +34,33 @@ public class EventReminderApp extends JFrame {
             }
         });
         updateTable();
+
+        Thread reminderThread = new Thread(() -> {
+            while (true) {
+                try {
+                    checkUpcomingEvents();
+                    Thread.sleep(60 * 1000);
+                } catch (InterruptedException e) {
+                    break;
+                }
+            }
+        });
+        reminderThread.setDaemon(true);
+        reminderThread.start();
+    }
+    private void checkUpcomingEvents() {
+        LocalDate tomorrow = LocalDate.now().plusDays(1);
+        StringBuilder sb = new StringBuilder();
+        for (Event ev : manager.arr) {
+            if (!ev.getEventStatus() && ev.getDate().equals(tomorrow)) {
+                sb.append(ev.showTitle()).append(" - ").append(ev.showDescription()).append("\n");
+            }
+        }
+        if (sb.length() > 0) {
+            SwingUtilities.invokeLater(() ->
+                JOptionPane.showMessageDialog(this, "Upcoming event(s) tomorrow:\n" + sb, "Event Reminder", JOptionPane.INFORMATION_MESSAGE)
+            );
+        }
     }
 
     private JPanel createInputPanel() {
