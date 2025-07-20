@@ -2,6 +2,9 @@
 
 A simple Java Swing desktop application to manage and remind you of your events. Events are saved to a file for persistence, and the app will notify you if an event is scheduled for tomorrow.
 
+<img src="s1.png">
+<img src="s2.png">
+
 ## Features
 - Add, view, and remove events with title, description, and date
 - Mark events as completed (double-click in the table)
