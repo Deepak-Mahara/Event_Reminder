@@ -1,9 +1,10 @@
 # Event Reminder Java Application
-
 A simple Java Swing desktop application to manage and remind you of your events. Events are saved to a file for persistence, and the app will notify you if an event is scheduled for tomorrow.
 
-<img src="s1.png">
-<img src="s2.png">
+<p float="left">
+  <img src="s1.png" width="200" style="margin-right: 10px;">
+  <img src="s2.png" width="200">
+</p>
 
 ## Features
 - Add, view, and remove events with title, description, and date
