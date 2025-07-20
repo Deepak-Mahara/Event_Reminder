@@ -27,6 +27,10 @@ public class Event {
         return isCompleted;
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
+
     public void setEventStatus(boolean flag) {
         this.isCompleted = flag;
     }
